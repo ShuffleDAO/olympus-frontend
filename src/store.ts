@@ -4,8 +4,6 @@ import networkReducer from "./slices/NetworkSlice";
 import bondingReducer from "./slices/BondSlice";
 import appReducer from "./slices/AppSlice";
 import pendingTransactionsReducer from "./slices/PendingTxnsSlice";
-import poolDataReducer from "./slices/PoolThunk";
-import lusdDataReducer from "./slices/LusdSlice";
 import messagesReducer from "./slices/MessagesSlice";
 import zapReducer from "./slices/ZapSlice";
 // reducers are named automatically based on the name field in the slice
@@ -20,8 +18,6 @@ const store = configureStore({
     bonding: bondingReducer,
     app: appReducer,
     pendingTransactions: pendingTransactionsReducer,
-    poolData: poolDataReducer,
-    lusdData: lusdDataReducer,
     messages: messagesReducer,
     zap: zapReducer,
   },

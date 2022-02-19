@@ -26,7 +26,6 @@ import "./stake.scss";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { Skeleton } from "@material-ui/lab";
-import ExternalStakePool from "./ExternalStakePool";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import ZapCta from "../Zap/ZapCta";
@@ -191,21 +190,6 @@ function Stake() {
               <div className="card-header">
                 <Typography variant="h5">Single Stake (3, 3)</Typography>
                 <RebaseTimer />
-
-                {address && Number(oldSohmBalance) > 0.01 && (
-                  <Link
-                    className="migrate-sohm-button"
-                    style={{ textDecoration: "none" }}
-                    href="https://docs.olympusdao.finance/using-the-website/migrate"
-                    aria-label="migrate-sohm"
-                    target="_blank"
-                  >
-                    <NewReleases viewBox="0 0 24 24" />
-                    <Typography>
-                      <Trans>Migrate sOHM!</Trans>
-                    </Typography>
-                  </Link>
-                )}
               </div>
             </Grid>
 
@@ -276,7 +260,7 @@ function Stake() {
                     {modalButton}
                   </div>
                   <Typography variant="h6">
-                    <Trans>Connect your wallet to stake OHM</Trans>
+                    <Trans>Connect your wallet to stake MINT</Trans>
                   </Typography>
                 </div>
               ) : (
@@ -313,14 +297,14 @@ function Stake() {
                                   <>
                                     <Trans>First time staking</Trans> <b>OHM</b>?
                                     <br />
-                                    <Trans>Please approve Olympus Dao to use your</Trans> <b>OHM</b>{" "}
+                                    <Trans>Please approve ShuffleDao to use your</Trans> <b>MINT</b>{" "}
                                     <Trans>for staking</Trans>.
                                   </>
                                 ) : (
                                   <>
-                                    <Trans>First time unstaking</Trans> <b>sOHM</b>?
+                                    <Trans>First time unstaking</Trans> <b>sMINT</b>?
                                     <br />
-                                    <Trans>Please approve Olympus Dao to use your</Trans> <b>sOHM</b>{" "}
+                                    <Trans>Please approve ShuffleDAO to use your</Trans> <b>sMINT</b>{" "}
                                     <Trans>for unstaking</Trans>.
                                   </>
                                 )}
@@ -366,7 +350,7 @@ function Stake() {
                                   onChangeStake("stake");
                                 }}
                               >
-                                {txnButtonText(pendingTransactions, "staking", t`Stake OHM`)}
+                                {txnButtonText(pendingTransactions, "staking", t`Stake MINT`)}
                               </Button>
                             ) : (
                               <Button
@@ -398,7 +382,7 @@ function Stake() {
                                   onChangeStake("unstake");
                                 }}
                               >
-                                {txnButtonText(pendingTransactions, "unstaking", t`Unstake OHM`)}
+                                {txnButtonText(pendingTransactions, "unstaking", t`Unstake MINT`)}
                               </Button>
                             ) : (
                               <Button
@@ -423,47 +407,33 @@ function Stake() {
                     <StakeRow
                       title={t`Unstaked Balance`}
                       id="user-balance"
-                      balance={`${trim(Number(ohmBalance), 4)} OHM`}
+                      balance={`${trim(Number(ohmBalance), 4)} MINT`}
                       {...{ isAppLoading }}
                     />
                     <StakeRow
                       title={t`Staked Balance`}
                       id="user-staked-balance"
-                      balance={`${trimmedBalance} sOHM`}
+                      balance={`${trimmedBalance} sMINT`}
                       {...{ isAppLoading }}
                     />
                     <StakeRow
                       title={t`Single Staking`}
-                      balance={`${trim(Number(sohmBalance), 4)} sOHM`}
-                      indented
-                      {...{ isAppLoading }}
-                    />
-                    <StakeRow
-                      title={t`Staked Balance in Fuse`}
-                      balance={`${trim(Number(fsohmBalance), 4)} fsOHM`}
+                      balance={`${trim(Number(sohmBalance), 4)} sMINT`}
                       indented
                       {...{ isAppLoading }}
                     />
                     <StakeRow
                       title={t`Wrapped Balance`}
-                      balance={`${trim(Number(wsohmBalance), 4)} wsOHM`}
+                      balance={`${trim(Number(wsohmBalance), 4)} wsMINT`}
                       {...{ isAppLoading }}
                       indented
-                    />
-                    <StakeRow
-                      title={t`Wrapped Balance in FiatDAO`}
-                      balance={`${trim(Number(fiatDaowsohmBalance), 4)} wsOHM`}
-                      {...{ isAppLoading }}
-                      indented
-                    />
-                    <StakeRow
-                      title={`${t`Wrapped Balance`} (v2)`}
-                      balance={`${trim(Number(gOhmBalance), 4)} gOHM`}
-                      indented
-                      {...{ isAppLoading }}
                     />
                     <Divider color="secondary" />
-                    <StakeRow title={t`Next Reward Amount`} balance={`${nextRewardValue} sOHM`} {...{ isAppLoading }} />
+                    <StakeRow
+                      title={t`Next Reward Amount`}
+                      balance={`${nextRewardValue} sMINT`}
+                      {...{ isAppLoading }}
+                    />
                     <StakeRow
                       title={t`Next Reward Yield`}
                       balance={`${stakingRebasePercentage}%`}
@@ -482,7 +452,6 @@ function Stake() {
         </Paper>
       </Zoom>
       <ZapCta />
-      <ExternalStakePool />
     </div>
   );
 }

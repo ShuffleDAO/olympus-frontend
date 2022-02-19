@@ -18,7 +18,7 @@ import { loadAccountDetails, calculateUserBondDetails, getMigrationAllowances } 
 import { getZapTokenBalances } from "./slices/ZapSlice";
 import { info } from "./slices/MessagesSlice";
 
-import { Stake, ChooseBond, Bond, TreasuryDashboard, PoolTogether, Zap, Wrap } from "./views";
+import { Stake, ChooseBond, Bond, TreasuryDashboard, Zap, Wrap } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
@@ -96,7 +96,7 @@ function App() {
   const networkId = useAppSelector(state => state.network.networkId);
 
   // TODO (appleseed-expiredBonds): there may be a smarter way to refactor this
-  const { bonds, expiredBonds } = useBonds(networkId);
+  const { bonds } = useBonds(networkId);
   async function loadDetails(whichDetails: string) {
     // NOTE (unbanksy): If you encounter the following error:
     // Unhandled Rejection (Error): call revert exception (method="balanceOf(address)", errorArgs=null, errorName=null, errorSignature=null, reason=null, code=CALL_EXCEPTION, version=abi/5.4.0)
@@ -147,11 +147,11 @@ function App() {
         }
       });
       dispatch(getZapTokenBalances({ address, networkID: networkId, provider: loadProvider }));
-      expiredBonds.map(bond => {
-        if (bond.getAvailability(networkId)) {
-          dispatch(calculateUserBondDetails({ address, bond, provider, networkID: networkId }));
-        }
-      });
+      // expiredBonds.map(bond => {
+      //   if (bond.getAvailability(networkId)) {
+      //     dispatch(calculateUserBondDetails({ address, bond, provider, networkID: networkId }));
+      //   }
+      // });
     },
     [networkId, address],
   );
@@ -261,10 +261,6 @@ function App() {
               <Route exact path={`/zap`}>
                 <Zap />
               </Route>
-            </Route>
-
-            <Route path="/33-together">
-              <PoolTogether />
             </Route>
 
             <Route path="/bonds">

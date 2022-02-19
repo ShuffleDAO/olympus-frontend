@@ -92,12 +92,7 @@ export const calcBondDetails = createAsyncThunk(
     const terms = await bondContract.terms();
     const maxBondPrice = await bondContract.maxPayout();
     let debtRatio: BigNumberish;
-    // TODO (appleseed): improve this logic
-    if (bond.name === "cvx") {
-      debtRatio = await bondContract.debtRatio();
-    } else {
-      debtRatio = await bondContract.standardizedDebtRatio();
-    }
+    debtRatio = await bondContract.standardizedDebtRatio();
     debtRatio = Number(debtRatio.toString()) / Math.pow(10, 9);
 
     let marketPrice: number = 0;
@@ -112,16 +107,7 @@ export const calcBondDetails = createAsyncThunk(
     }
 
     try {
-      // TODO (appleseed): improve this logic
-      if (bond.name === "cvx") {
-        let bondPriceRaw = await bondContract.bondPrice();
-        let assetPriceUSD = await bond.getBondReservePrice(networkID, provider);
-        let assetPriceBN = ethers.utils.parseUnits(assetPriceUSD.toString(), 14);
-        // bondPriceRaw has 4 extra decimals, so add 14 to assetPrice, for 18 total
-        bondPrice = bondPriceRaw.mul(assetPriceBN);
-      } else {
-        bondPrice = await bondContract.bondPriceInUSD();
-      }
+      bondPrice = await bondContract.bondPriceInUSD();
       bondDiscount = (marketPrice * Math.pow(10, 18) - Number(bondPrice.toString())) / Number(bondPrice.toString()); // 1 - bondPrice / (bondPrice * Math.pow(10, 9));
     } catch (e) {
       console.log("error getting bondPriceInUSD", bond.name, e);

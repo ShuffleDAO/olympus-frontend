@@ -59,13 +59,6 @@ export const getBalances = createAsyncThunk(
       ) as IERC20;
       sohmBalance = await sohmContract.balanceOf(address);
 
-      const poolTokenContract = new ethers.Contract(
-        addresses[networkID].PT_TOKEN_ADDRESS as string,
-        ierc20Abi,
-        provider,
-      ) as IERC20;
-      poolBalance = await poolTokenContract.balanceOf(address);
-
       for (const fuseAddressKey of ["FUSE_6_SOHM", "FUSE_18_SOHM", "FUSE_36_SOHM"]) {
         if (addresses[networkID][fuseAddressKey]) {
           const fsohmContract = new ethers.Contract(
@@ -165,7 +158,6 @@ export const loadAccountDetails = createAsyncThunk(
     let wrapAllowance = BigNumber.from("0");
     let unwrapAllowance = BigNumber.from("0");
     let gOhmUnwrapAllowance = BigNumber.from("0");
-    let poolAllowance = BigNumber.from("0");
     try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
       gOhmUnwrapAllowance = await gOhmContract.allowance(address, addresses[networkID].MIGRATOR_ADDRESS);
@@ -179,7 +171,6 @@ export const loadAccountDetails = createAsyncThunk(
 
       const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, sOHMv2, provider) as SOhmv2;
       unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
-      poolAllowance = await sohmContract.allowance(address, addresses[networkID].PT_PRIZE_POOL_ADDRESS);
       wrapAllowance = await sohmContract.allowance(address, addresses[networkID].WSOHM_ADDRESS);
 
       const wsohmContract = new ethers.Contract(addresses[networkID].WSOHM_ADDRESS as string, wsOHM, provider) as WsOHM;

@@ -30,7 +30,7 @@ export const OHMPrice = () => {
 
   return (
     <Metric className="price">
-      <Metric.Title>OHM Price</Metric.Title>
+      <Metric.Title>MINT Price</Metric.Title>
       <Metric.Value>{marketPrice && formatCurrency(marketPrice, 2)}</Metric.Value>
     </Metric>
   );
@@ -55,7 +55,7 @@ export const BackingPerOHM = () => {
 
   return (
     <Metric className="bpo">
-      <Metric.Title>Backing per OHM</Metric.Title>
+      <Metric.Title>Backing per MINT</Metric.Title>
       <Metric.Value>{!isNaN(backingPerOhm) && formatCurrency(backingPerOhm, 2)}</Metric.Value>
     </Metric>
   );
@@ -81,7 +81,7 @@ export const WSOHMPrice = () => {
   return (
     <Metric className="wsoprice">
       <Metric.Title>
-        wsOHM Price
+        wsMINT Price
         <InfoTooltip
           message={
             "wsOHM = sOHM * index\n\nThe price of wsOHM is equal to the price of OHM multiplied by the current index"
