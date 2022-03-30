@@ -34,7 +34,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
   const isVerySmallScreen = useMediaQuery("(max-width: 355px)");
 
   return (
-    <AppBar position="sticky" className={classes.appBar} elevation={0}>
+    <AppBar position="fixed" className={classes.appBar} elevation={0}>
       <Toolbar disableGutters className="dapp-topbar">
         <Button
           id="hamburger"

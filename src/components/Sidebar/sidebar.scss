@@ -67,6 +67,7 @@
   display: flex;
   align-items: center;
 }
+.dapp-nav .link-group,
 .dapp-nav a {
   margin-top: 0.7rem;
   margin-left: 33px;
@@ -90,12 +91,13 @@
     display: flex;
     align-self: center;
   }
-  a {
+  a, .link-group {
     display: flex;
     width: 100%;
     align-items: center;
     margin-bottom: 15px;
   }
+  .link-group svg,
   a svg {
     width: 20px;
     height: 20px;
@@ -104,6 +106,11 @@
   }
 }
 
+.link-group>.MuiTypography-root {
+  opacity: 0.5;
+}
+
+.dapp-menu-data__group,
 .bond-discounts {
   text-align: left;
   color: #999999;
@@ -155,6 +162,7 @@
     flex-flow: column !important;
     justify-content: flex-start;
     margin: auto;
+    .link-group,
     a {
       padding: 0;
       svg {

@@ -5,6 +5,8 @@ import externalUrls from "./externalUrls";
 import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
+import { ReactComponent as AuctionIcon } from "../../assets/icons/auction.svg";
+import { ReactComponent as LockIcon } from "../../assets/icons/lock.svg";
 import { ReactComponent as OlympusIcon } from "../../assets/icons/mintsm.svg";
 import { ReactComponent as ZapIcon } from "../../assets/icons/zap.svg";
 import { ReactComponent as NewIcon } from "../../assets/icons/new-icon.svg";
@@ -86,21 +88,73 @@ function NavContent() {
                       <Trans>Dashboard</Trans>
                     </Typography>
                   </Link>
-
                   <Link
                     component={NavLink}
-                    id="stake-nav"
-                    to="/"
+                    id="dash-nav"
+                    to="/dashboard"
                     isActive={(match, location) => {
-                      return checkPage(match, location, "stake");
+                      return checkPage(match, location, "dashboard");
                     }}
                     className={`button-dapp-menu ${isActive ? "active" : ""}`}
                   >
                     <Typography variant="h6">
-                      <SvgIcon color="primary" component={StakeIcon} />
-                      <Trans>Stake</Trans>
+                      <SvgIcon color="primary" component={AuctionIcon} />
+                      <Trans>NFT Auctions</Trans>
                     </Typography>
                   </Link>
+                  <Link
+                    component={NavLink}
+                    id="dash-nav"
+                    to="/dashboard"
+                    isActive={(match, location) => {
+                      return checkPage(match, location, "dashboard");
+                    }}
+                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                  >
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={LockIcon} />
+                      <Trans>MINT Locking</Trans>
+                    </Typography>
+                  </Link>
+
+                  <div className="button-dapp-menu">
+                    <div className="link-group">
+                      <Typography variant="h6">
+                        <SvgIcon color="primary" component={StakeIcon} />
+                        <Trans>Staking</Trans>
+                      </Typography>
+                      <div className="dapp-menu-data discounts">
+                        <div className="dapp-menu-data__group">
+                          <Link
+                            component={NavLink}
+                            id="dash-nav"
+                            to="/nft-staking"
+                            isActive={(match, location) => {
+                              return checkPage(match, location, "dashboard");
+                            }}
+                            className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                          >
+                            <Typography variant="body2">
+                              <Trans>NFT Staking</Trans>
+                            </Typography>
+                          </Link>
+                          <Link
+                            component={NavLink}
+                            id="dash-nav"
+                            to="/mint-staking"
+                            isActive={(match, location) => {
+                              return checkPage(match, location, "dashboard");
+                            }}
+                            className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                          >
+                            <Typography variant="body2">
+                              <Trans>Mint Staking</Trans>
+                            </Typography>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <Link
                     component={NavLink}
                     id="bond-nav"
