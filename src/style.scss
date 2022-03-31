@@ -24,10 +24,12 @@ body {
   box-sizing: border-box;
 }
 
+nav+[class^="makeStyles-content"],
 nav+.makeStyles-content-2 {
   padding: 0px;
 }
 
+nav+[class^="makeStyles-content"]>div,
 nav+.makeStyles-content-2>div{
   padding-top: 80px;
 }
@@ -69,7 +71,7 @@ button {
   margin: 20px;
   height: calc(100% - 40px) !important;
   border: 1px solid rgba(84, 66, 84, 1) !important;
-  box-shadow: 0px 0px 20px -5px rgba(20, 20, 20, 1) !important;
+  box-shadow: 0px 10px 30px -10px rgba(20, 20, 20, 0.7) !important;
 }
 
 .MuiBackdrop-root {
@@ -94,7 +96,7 @@ button {
 .ohm-card {
   max-width: 833px;
   border: 1px solid rgba(84, 66, 84, 1);
-  box-shadow: 0px 0px 20px -5px rgba(20, 20, 20, 1) !important;
+  box-shadow: 0px 10px 30px -10px rgba(20, 20, 20, 0.7) !important;
 
   .card-header {
     width: 100%;

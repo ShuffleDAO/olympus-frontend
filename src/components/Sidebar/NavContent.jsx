@@ -105,7 +105,7 @@ function NavContent() {
                   <Link
                     component={NavLink}
                     id="dash-nav"
-                    to="/dashboard"
+                    to="/lock-mint"
                     isActive={(match, location) => {
                       return checkPage(match, location, "dashboard");
                     }}
@@ -128,7 +128,7 @@ function NavContent() {
                           <Link
                             component={NavLink}
                             id="dash-nav"
-                            to="/nft-staking"
+                            to="/staking-nft"
                             isActive={(match, location) => {
                               return checkPage(match, location, "dashboard");
                             }}
@@ -141,7 +141,7 @@ function NavContent() {
                           <Link
                             component={NavLink}
                             id="dash-nav"
-                            to="/mint-staking"
+                            to="/staking-mint"
                             isActive={(match, location) => {
                               return checkPage(match, location, "dashboard");
                             }}
