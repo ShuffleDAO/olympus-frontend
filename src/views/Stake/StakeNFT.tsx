@@ -42,7 +42,7 @@ function a11yProps(index: number) {
 const sOhmImg = getTokenImage("sohm");
 const ohmImg = getOhmTokenImage(16, 16);
 
-function Stake() {
+function StakingNFT() {
   const dispatch = useDispatch();
   const { provider, address, connect } = useWeb3Context();
   const networkId = useAppSelector(state => state.network.networkId);
@@ -136,11 +136,11 @@ function Stake() {
     // 1st catch if quantity > balance
     let gweiValue = ethers.utils.parseUnits(quantity.toString(), "gwei");
     if (action === "stake" && gweiValue.gt(ethers.utils.parseUnits(ohmBalance, "gwei"))) {
-      return dispatch(error(t`You cannot stake more than your OHM balance.`));
+      return dispatch(error(t`You cannot stake more than your MINT balance.`));
     }
 
     if (action === "unstake" && gweiValue.gt(ethers.utils.parseUnits(sohmBalance, "gwei"))) {
-      return dispatch(error(t`You cannot unstake more than your sOHM balance.`));
+      return dispatch(error(t`You cannot unstake more than your sMINT balance.`));
     }
 
     await dispatch(changeStake({ address, action, value: quantity.toString(), provider, networkID: networkId }));
@@ -188,7 +188,7 @@ function Stake() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <Typography variant="h5">Single Stake (3, 3)</Typography>
+                <Typography variant="h5">Single Stake - NFT Staking (3, 3)</Typography>
                 <RebaseTimer />
               </div>
             </Grid>
@@ -242,7 +242,7 @@ function Stake() {
                       </Typography>
                       <Typography variant="h4">
                         {currentIndex ? (
-                          <span data-testid="index-value">{trim(Number(currentIndex), 1)} OHM</span>
+                          <span data-testid="index-value">{trim(Number(currentIndex), 1)} MINT</span>
                         ) : (
                           <Skeleton width="150px" data-testid="index-loading" />
                         )}
@@ -295,7 +295,7 @@ function Stake() {
                               <Typography variant="body1" className="stake-note" color="textSecondary">
                                 {view === 0 ? (
                                   <>
-                                    <Trans>First time staking</Trans> <b>OHM</b>?
+                                    <Trans>First time staking</Trans> <b>MINT</b>?
                                     <br />
                                     <Trans>Please approve ShuffleDao to use your</Trans> <b>MINT</b>{" "}
                                     <Trans>for staking</Trans>.
@@ -456,4 +456,4 @@ function Stake() {
   );
 }
 
-export default Stake;
+export default StakingNFT;

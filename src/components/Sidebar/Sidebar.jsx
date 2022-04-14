@@ -5,7 +5,7 @@ import "./sidebar.scss";
 function Sidebar() {
   return (
     <div className={`sidebar`} id="sidebarContent">
-      <Drawer variant="permanent" anchor="left">
+      <Drawer variant="permanent" anchor="left" borderRadius="10px">
         <NavContent />
       </Drawer>
     </div>

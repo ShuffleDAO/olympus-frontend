@@ -121,7 +121,7 @@ function ZapInfo({ tokens, address }) {
                 ]}
               />
               <Typography color="textSecondary" align="center">
-                <Trans>You Get sOHM</Trans>{" "}
+                <Trans>You Get sMINT</Trans>{" "}
               </Typography>
             </Box>
             <Box classes={{ root: classes.infoBody }}>
@@ -130,8 +130,8 @@ function ZapInfo({ tokens, address }) {
               </Typography>
               <Typography align="left" variant="body2" className="oly-info-body">
                 <Trans>
-                  Staking is the primary value accrual strategy of Olympus. When you stake, you lock OHM and receive an
-                  equal amount of sOHM.
+                  Staking is the primary value accrual strategy of Olympus. When you stake, you lock MINT and receive an
+                  equal amount of sMINT.
                 </Trans>
               </Typography>
             </Box>

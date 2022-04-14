@@ -18,7 +18,7 @@ import { loadAccountDetails, calculateUserBondDetails, getMigrationAllowances } 
 import { getZapTokenBalances } from "./slices/ZapSlice";
 import { info } from "./slices/MessagesSlice";
 
-import { Stake, ChooseBond, Bond, TreasuryDashboard, Zap, Wrap } from "./views";
+import { LockMint, StakeNFT, StakeMint, ChooseBond, Bond, TreasuryDashboard, Zap, Wrap } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
@@ -244,11 +244,18 @@ function App() {
             </Route>
 
             <Route exact path="/">
-              <Redirect to="/stake" />
+              <Redirect to="/staking-mint" />
             </Route>
 
-            <Route path="/stake">
-              <Stake />
+            <Route path="/lock-mint">
+              <LockMint />
+            </Route>
+            <Route path="/staking-nft">
+              <StakeNFT />
+            </Route>
+
+            <Route path="/staking-mint">
+              <StakeMint />
             </Route>
 
             <Route path="/wrap">
