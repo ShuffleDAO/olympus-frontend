@@ -24,7 +24,7 @@ import { getTokenPrice } from "src/helpers";
 //   and include that in the definition of a bond
 export const dai = new StableBond({
   name: "dai",
-  displayName: "DAI",
+  displayName: "wETH",
   bondToken: "DAI",
   payoutToken: "OHM",
   bondIconSvg: DaiImg,
@@ -43,8 +43,8 @@ export const dai = new StableBond({
       reserveAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0xA3010baf4f1A6081e3d9A367cB0C3c17D4fD060e",
-      reserveAddress: "0x925E1000Ab580F275C9e8A5b67Ea1bc60836d548",
+      bondAddress: "0xDc13Ab595468a5C7C2bf86DBA8C969FCbB2e4b12",
+      reserveAddress: "0x942423ff4B76F083Dbb1c20679D14E3E18974021",
     },
   },
 });
@@ -181,9 +181,9 @@ export const ohm_weth = new CustomBond({
 // Is it a stableCoin bond? use `new StableBond`
 // Is it an LP Bond? use `new LPBond`
 // Add new bonds to this array!!
-export const allBonds = [dai, eth, ohm_dai, ohm_weth];
+export const allBonds = [dai];
 // TODO (appleseed-expiredBonds): there may be a smarter way to refactor this
-// export const allExpiredBonds = [];
+export const allExpiredBonds = [ohm_weth, eth, ohm_dai];
 export const allBondsMap = allBonds.reduce((prevVal, bond) => {
   return { ...prevVal, [bond.name]: bond };
 }, {});
